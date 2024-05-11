@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://portal.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/portal.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/light_s.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 33.6041 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1 ]
+}
+
+[node name="Portal" type="Area2D"]
+position = Vector2( 0, 10 )
+script = ExtResource( 1 )
+HellPortalColor = Color( 0.768627, 0.0470588, 0.0470588, 1 )
+HeavenPortalColor = Color( 0.6, 0.972549, 1, 1 )
+NormalPortalColor = Color( 1, 0.862745, 0.6, 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.862745, 0.6, 1 )
+self_modulate = Color( 1, 1, 1, 0.784314 )
+material = SubResource( 2 )
+position = Vector2( 1, 12.125 )
+scale = Vector2( 1, 6 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -3 )
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, 29.6041 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+playback_speed = 0.6
+anims/idle = SubResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.329412 )
+show_behind_parent = true
+light_mask = 0
+position = Vector2( 0, 3 )
+scale = Vector2( 3, 3 )
+z_index = 1
+texture = ExtResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]

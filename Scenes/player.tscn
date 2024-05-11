@@ -1,0 +1,580 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Sprites/MainCharacter/Playersrun.tres" type="Animation" id=1]
+[ext_resource path="res://Sprites/MainCharacter/Playersfall.tres" type="Animation" id=2]
+[ext_resource path="res://Sprites/MainCharacter/Playersslide.tres" type="Animation" id=3]
+[ext_resource path="res://Sprites/MainCharacter/Playersjump.tres" type="Animation" id=4]
+[ext_resource path="res://Sprites/MainCharacter/Marky_Body_nohand.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/player.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/MainCharacter/marky_wall_death.png" type="Texture" id=7]
+[ext_resource path="res://Audio/SFX/bodyfall.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/wallsmack.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sprites/debug/debugarrow.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/MainCharacter/marky_getupafterdeath.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/MainCharacter/Revolver.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Effects/muzzleflash.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Effects/muzzleflashlight.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/MainCharacter/player_death_lava.png" type="Texture" id=15]
+
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 0.388235, 0.388235, 0.388235, 0.658824, 0.47451, 0.47451, 0.47451, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "shoot"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("muzzleflash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 6 ), Vector2( 4, 6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10.0, 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shake_camera"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../bullettracer:points")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, 0, 0 ), PoolVector2Array( 20, 0, 100, 0 ), PoolVector2Array( 100, 0, 100, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "PlayerDieLava"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("lavadeath:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.6, 0.75, 0.85, 0.95, 1.05, 1.15, 1.25, 1.35, 1.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("gunnode:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("lavadeath:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("lavadeath:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3, 0.55, 2 ),
+"transitions": PoolRealArray( 1.5, 0.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ), Vector2( 0, -8 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Camera2D:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 0 ), Vector2( 70, 0 ), Vector2( 60, 4 ), Vector2( 80, 4 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "PlayerGetUpAfterDeath"
+length = 5.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 0.9, 1.6, 2, 2.4, 2.8, 3.8, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 13, 14, 13, 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("gunnode:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("lavadeath:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("deathsprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "jet_fly"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 17, 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("gunnode:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "jet_idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("gunnode:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "playerwalldeath"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("deathsprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("playersounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("playersounds2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("deathsprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Camera2D:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 0 ), Vector2( 70, 0 ), Vector2( 60, 4 ), Vector2( 80, 4 ), Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("gunnode:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 8 )
+
+[sub_resource type="RayShape2D" id=9]
+length = 300.0
+
+[node name="player" type="KinematicBody2D" groups=["player"]]
+collision_mask = 15
+script = ExtResource( 6 )
+
+[node name="bullettracer" type="Line2D" parent="."]
+position = Vector2( 25, -2 )
+z_index = -1
+points = PoolVector2Array( 100, 0, 100, 0 )
+width = 2.0
+default_color = Color( 1, 0.792157, 0.168627, 1 )
+gradient = SubResource( 10 )
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 1
+
+[node name="gunnode" type="Node2D" parent="."]
+position = Vector2( 4, 6 )
+
+[node name="gun" type="Sprite" parent="gunnode"]
+position = Vector2( 6, -6.346 )
+texture = ExtResource( 12 )
+
+[node name="muzzleflash" type="Sprite" parent="gunnode"]
+visible = false
+material = SubResource( 6 )
+position = Vector2( 29, -8 )
+texture = ExtResource( 13 )
+hframes = 3
+
+[node name="Light2D" type="Light2D" parent="gunnode/muzzleflash"]
+position = Vector2( -10, -2 )
+enabled = false
+texture = ExtResource( 14 )
+texture_scale = 2.0
+energy = 0.9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gunnode"]
+anims/RESET = SubResource( 8 )
+anims/shoot = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+hframes = 7
+vframes = 3
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Playersrun"
+playback_speed = 1.8
+anims/PlayerDieLava = SubResource( 11 )
+anims/PlayerGetUpAfterDeath = SubResource( 4 )
+anims/Playersfall = ExtResource( 2 )
+anims/Playersjump = ExtResource( 4 )
+anims/Playersrun = ExtResource( 1 )
+anims/Playersslide = ExtResource( 3 )
+anims/RESET = SubResource( 14 )
+anims/jet_fly = SubResource( 12 )
+anims/jet_idle = SubResource( 13 )
+anims/playerwalldeath = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 8 )
+shape = SubResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
+hframes = 15
+frame = 12
+
+[node name="deathsprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 7 )
+hframes = 6
+frame = 5
+
+[node name="playersounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="playersounds2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="slidetimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="slidecooldown" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[node name="forwardcast" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 17
+
+[node name="Sprite" type="Sprite" parent="forwardcast"]
+texture = ExtResource( 10 )
+centered = false
+offset = Vector2( 8, -2 )
+
+[node name="shoottimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="downcast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 17
+collide_with_areas = true
+
+[node name="upcast" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, 14 )
+enabled = true
+cast_to = Vector2( 0, -16 )
+collision_mask = 17
+collide_with_areas = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -37.0
+margin_right = 20.0
+margin_bottom = -23.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shootarea" type="Area2D" parent="." groups=["bullet"]]
+collision_layer = 32
+collision_mask = 20
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shootarea"]
+rotation = -1.5708
+shape = SubResource( 9 )
+
+[node name="shootcast" type="RayCast2D" parent="shootarea/CollisionShape2D"]
+visible = false
+cast_to = Vector2( 300, 0 )
+collision_mask = 20
+collide_with_areas = true
+
+[node name="lavadeath" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 15 )
+hframes = 11
+frame = 10
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="slidetimer" to="." method="_on_slidetimer_timeout"]
+[connection signal="timeout" from="slidecooldown" to="." method="_on_slidecooldown_timeout"]
+[connection signal="timeout" from="shoottimer" to="." method="_on_shoottimer_timeout"]
+[connection signal="body_entered" from="shootarea" to="." method="_on_shootarea_body_entered"]

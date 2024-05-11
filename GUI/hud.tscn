@@ -1,0 +1,407 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://GUI/hud.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/hud.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/GUI/ammo.png" type="Texture" id=3]
+[ext_resource path="res://Audio/SFX/GUI/RevolverCylinderSpin.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/runes/rune_outline.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/runes/runes.png" type="Texture" id=6]
+[ext_resource path="res://Audio/SFX/rune_collected.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sprites/GUI/pause.png" type="Texture" id=8]
+[ext_resource path="res://GUI/styles/pauseNormal.tres" type="StyleBox" id=9]
+[ext_resource path="res://GUI/styles/pausePressed.tres" type="StyleBox" id=10]
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.180392, 0.180392, 0.180392, 0.392157 )
+shadow_color = Color( 0, 0, 0, 0.0392157 )
+shadow_size = 9
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Animation" id=5]
+resource_name = "death_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.498039 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "specialpopout"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("scorevbox/specialmessage:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 36 ), Vector2( -200, 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("scorevbox/specialmessage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("scorevbox/specialmessage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "specialpopup"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("scorevbox/specialmessage:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -200, 36 ), Vector2( 0, 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("scorevbox/specialmessage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("scorevbox/specialmessage:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("scorevbox/scorehbox/Panel/scorehbox/score:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "rune_collected"
+length = 3.184
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -80 ), Vector2( 0, -60 ), Vector2( -860, -490 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "changeRunes"
+} ]
+}
+
+[node name="hud" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="scorevbox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 23.0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scorehbox" type="HBoxContainer" parent="scorevbox"]
+margin_right = 608.0
+margin_bottom = 32.0
+
+[node name="Container" type="Container" parent="scorevbox/scorehbox"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 8
+
+[node name="ammo" type="Sprite" parent="scorevbox/scorehbox/Container"]
+position = Vector2( 16, 16 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="scorevbox/scorehbox"]
+margin_left = 36.0
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 31.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="runetexture" type="TextureRect" parent="scorevbox/scorehbox/CenterContainer"]
+margin_right = 19.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 19, 30 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+expand = true
+
+[node name="runecount" type="Label" parent="scorevbox/scorehbox/CenterContainer"]
+margin_left = 5.0
+margin_top = 7.0
+margin_right = 13.0
+margin_bottom = 22.0
+text = "-1"
+
+[node name="Panel" type="PanelContainer" parent="scorevbox/scorehbox"]
+margin_left = 59.0
+margin_top = 4.0
+margin_right = 149.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 90, 0 )
+rect_clip_content = true
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="scorehbox" type="HBoxContainer" parent="scorevbox/scorehbox/Panel"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 90.0
+margin_bottom = 19.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scoretitle" type="Label" parent="scorevbox/scorehbox/Panel/scorehbox"]
+margin_right = 45.0
+margin_bottom = 15.0
+rect_clip_content = true
+text = "SCORE: "
+uppercase = true
+
+[node name="score" type="Label" parent="scorevbox/scorehbox/Panel/scorehbox"]
+margin_left = 49.0
+margin_right = 57.0
+margin_bottom = 15.0
+rect_clip_content = true
+text = "0"
+align = 3
+valign = 1
+
+[node name="pausebutton" type="Button" parent="scorevbox/scorehbox"]
+margin_left = 576.0
+margin_right = 608.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+focus_mode = 0
+size_flags_horizontal = 10
+size_flags_vertical = 0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/normal = ExtResource( 9 )
+enabled_focus_mode = 0
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="scorevbox/scorehbox/pausebutton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -7.0
+margin_right = 8.0
+margin_bottom = 6.0
+texture = ExtResource( 8 )
+expand = true
+
+[node name="specialmessage" type="Label" parent="scorevbox"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -200.0
+margin_top = 36.0
+margin_right = 408.0
+margin_bottom = 51.0
+text = "Enemy Down! +200"
+
+[node name="cornervbox" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -15.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="cornervbox"]
+margin_right = 200.0
+margin_bottom = 15.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="deathhbox" type="HBoxContainer" parent="cornervbox/Panel"]
+margin_right = 200.0
+margin_bottom = 15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deathtext" type="Label" parent="cornervbox/Panel/deathhbox"]
+margin_right = 200.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+text = "Tap to try again"
+align = 2
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cornervbox"]
+autoplay = "death_idle"
+anims/death_idle = SubResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RevolverCylinderSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 2.0
+
+[node name="hud_animation" type="AnimationPlayer" parent="."]
+anims/specialpopout = SubResource( 7 )
+anims/specialpopup = SubResource( 6 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.5
+margin_top = -13.0
+margin_right = 8.5
+margin_bottom = 13.0
+
+[node name="Sprite" type="Sprite" parent="CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+centered = false
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/rune_collected = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
+stream = ExtResource( 7 )
+
+[connection signal="pressed" from="scorevbox/scorehbox/pausebutton" to="." method="_on_pausebutton_pressed"]
+[connection signal="animation_finished" from="hud_animation" to="." method="_on_hud_animation_animation_finished"]

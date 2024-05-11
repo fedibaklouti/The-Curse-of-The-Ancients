@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mummybreathing.wav-5ba8afce1220e745b4d09da105049618.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/mummybreathing.wav"
+dest_files=[ "res://.import/mummybreathing.wav-5ba8afce1220e745b4d09da105049618.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

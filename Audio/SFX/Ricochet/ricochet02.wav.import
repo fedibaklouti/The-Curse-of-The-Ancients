@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ricochet02.wav-47845d969e2eb1c3575cb98878ac3984.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Ricochet/ricochet02.wav"
+dest_files=[ "res://.import/ricochet02.wav-47845d969e2eb1c3575cb98878ac3984.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

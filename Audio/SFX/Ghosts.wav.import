@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ghosts.wav-4a92add2d4ce6b39709da63a35c87090.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Ghosts.wav"
+dest_files=[ "res://.import/Ghosts.wav-4a92add2d4ce6b39709da63a35c87090.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

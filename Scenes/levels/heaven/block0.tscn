@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/levels/ScrollingTiles.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/levels/heaven/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/levels/loadzone.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 20, 9e+06 )
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+show_collision = true
+collision_layer = 16
+collision_mask = 5
+format = 1
+tile_data = PoolIntArray( -2228204, 4, 0, -2162680, 5, 0, -2162661, 6, 0, -2097113, 6, 0, -1966081, 6, 0, -2031567, 5, 0, -1966067, 5, 0, 1507327, 5, 0, 1441802, 4, 0, 1441816, 6, 0, 1441843, 3, 0, 1507342, 5, 0, 1507367, 5, 0, 1703967, 6, 0 )
+script = ExtResource( 1 )
+
+[node name="loadzone" type="Area2D" parent="."]
+visible = false
+position = Vector2( 384, 0 )
+collision_layer = 2
+priority = 80.0
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="loadzone"]
+shape = SubResource( 5 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0, -719.389 )
+scale = Vector2( 1, 2.46111 )
+rect = Rect2( -10, -10, 1600, 720 )
+
+[connection signal="body_entered" from="loadzone" to="loadzone" method="_on_loadzone_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

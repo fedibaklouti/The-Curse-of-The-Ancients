@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://GUI/hud.tres" type="Theme" id=1]
+[ext_resource path="res://Fonts/Karla-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://GUI/Pause.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.607843 )
+
+[sub_resource type="DynamicFont" id=2]
+use_filter = true
+extra_spacing_bottom = 16
+font_data = ExtResource( 2 )
+
+[node name="PauseDialog" type="PopupDialog"]
+pause_mode = 2
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 5
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_right = -32.0
+custom_constants/separation = 6
+alignment = 1
+
+[node name="PausedText" type="Label" parent="VBoxContainer"]
+margin_top = 130.0
+margin_right = 576.0
+margin_bottom = 166.0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+text = "PAUSED"
+
+[node name="continue" type="Button" parent="VBoxContainer"]
+margin_top = 172.0
+margin_right = 576.0
+margin_bottom = 187.0
+text = "Continue"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="restart" type="Button" parent="VBoxContainer"]
+margin_top = 193.0
+margin_right = 576.0
+margin_bottom = 208.0
+text = "Restart"
+align = 0
+
+[node name="leaderboards" type="Button" parent="VBoxContainer"]
+visible = false
+margin_top = 204.0
+margin_right = 576.0
+margin_bottom = 219.0
+text = "Leaderboard"
+align = 0
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 214.0
+margin_right = 576.0
+margin_bottom = 229.0
+text = "Quit"
+align = 0
+
+[connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/leaderboards" to="." method="_on_leaderboards_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

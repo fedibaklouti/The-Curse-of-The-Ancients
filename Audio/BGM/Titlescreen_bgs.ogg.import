@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Titlescreen_bgs.ogg-704789197fe27b5b29a69c33442039dc.oggstr"
+
+[deps]
+
+source_file="res://Audio/BGM/Titlescreen_bgs.ogg"
+dest_files=[ "res://.import/Titlescreen_bgs.ogg-704789197fe27b5b29a69c33442039dc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

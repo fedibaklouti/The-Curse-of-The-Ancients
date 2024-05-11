@@ -1,0 +1,245 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/levels/ParallaxLayer.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/backgrounds/hell_background02_01.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/backgrounds/hell_background01_02.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/backgrounds/hell_sky.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/backgrounds/hell_background02_03.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/backgrounds/hell_background02_02.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/backgrounds/hell_background01_01.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/backgrounds/hell_gradient.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=6]
+resource_name = "idle"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect4:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="background" type="CanvasLayer"]
+layer = -100
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2( 0, 550 )
+scroll_base_offset = Vector2( 0, 80 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 780, 512 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, 1483.91 )
+scale = Vector2( 1, 5.92969 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -300 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1560, 512 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.298039, 0.298039, 0.298039, 1 )
+position = Vector2( 280, -80 )
+scale = Vector2( 0.5, 0.5 )
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 780, 0 )
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+visible = false
+texture = ExtResource( 7 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 4030, 512 )
+
+[node name="TextureRect2" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource( 3 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 0, 4030, 512 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer6"]
+root_node = NodePath("../../ParallaxLayer6")
+autoplay = "idle"
+playback_speed = 0.7
+anims/idle = SubResource( 6 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -1, -42 )
+motion_scale = Vector2( 0.4, 0.4 )
+motion_offset = Vector2( 0, 50 )
+motion_mirroring = Vector2( 1560, 0 )
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="CPUParticles2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 1, -112 )
+z_as_relative = false
+amount = 20
+local_coords = false
+emission_shape = 2
+emission_rect_extents = Vector2( 1500, 100 )
+gravity = Vector2( 0, -98 )
+initial_velocity_random = 1.0
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+linear_accel_random = 1.0
+radial_accel = 20.0
+radial_accel_random = 1.0
+tangential_accel = 50.0
+tangential_accel_random = 1.0
+damping = 3.0
+damping_random = 1.0
+angle = 200.0
+angle_random = 1.0
+scale_amount = 0.5
+scale_amount_random = 1.0
+color = Color( 1, 0.552941, 0, 1 )
+hue_variation = 0.2
+hue_variation_random = 1.0
+
+[node name="TextureRect5" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 1, 0.423529, 0.0823529, 1 )
+light_mask = 0
+material = SubResource( 7 )
+position = Vector2( 1, 68.5694 )
+scale = Vector2( 1, 1.13885 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 55, 1560, 785 )
+
+[node name="TextureRect3" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 55, 1560, 457 )
+
+[node name="TextureRect2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+visible = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 55, 1560, 457 )
+
+[node name="TextureRect4" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+visible = false
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 55, 1560, 457 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer3"]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 0.6 )
+motion_offset = Vector2( 0, -100 )
+motion_mirroring = Vector2( 1560, 0 )
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+visible = false
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1560, 512 )
+
+[node name="TextureRect2" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1560, 512 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer5"]
+autoplay = "idle"
+playback_speed = 0.7
+anims/idle = SubResource( 3 )

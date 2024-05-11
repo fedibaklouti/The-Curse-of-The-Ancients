@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/levels/ParallaxLayer.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/backgrounds/normal_foreground.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/backgrounds/normal_background.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 1, 0.890196, 0.505882, 1, 0.807843, 0.760784, 0.533333, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+width = 128
+
+[node name="background" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2( 0, -280 )
+motion_mirroring = Vector2( 780, 1024 )
+script = ExtResource( 1 )
+
+[node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.278431, 0.278431, 0.278431, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 960.0
+margin_top = -250.0
+margin_right = 1984.0
+margin_bottom = 774.0
+rect_rotation = 90.0
+texture = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 0.4 )
+motion_mirroring = Vector2( 1774, 1654 )
+script = ExtResource( 1 )
+
+[node name="TextureRect2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 0.392157, 0.388235, 0.388235, 1 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 200, 1000, 3556, 3308 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2( 0, -280 )
+motion_mirroring = Vector2( 1244, 784 )
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+modulate = Color( 0.45098, 0.45098, 0.45098, 1 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 100, 1778, 1122 )
