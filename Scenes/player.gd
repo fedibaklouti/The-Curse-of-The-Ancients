@@ -34,7 +34,7 @@ var DeathAnimationFinished=false
 onready var Animator = $AnimationPlayer
 onready var GunAnimator =$gunnode/AnimationPlayer
 onready var PlayerCamera = $Camera2D
-onready var CameraZoom = 1.7777/(OS.get_window_size().x/OS.get_window_size().y)
+var CameraZoom = 1.7777
 var tween = Tween.new()
 var tween2 = Tween.new()
 var ammo=6
@@ -52,6 +52,7 @@ enum Player_Deaths {HIT_WALL=0, HIT_ENEMY=1, HIT_LAVA=2, HIT_SPIKE=3}
 enum Player_Stats {IS_RUNNING=0, IS_JUMPING=1, IS_SLIDING=2, IS_DYING=3}
 var status=0
 
+
 func add_ammo():
 	ammo=6
 	emit_signal("ammochanged",ammo)
@@ -64,13 +65,18 @@ func _ready():
 	emit_signal("ammochanged",ammo)
 	$gunnode/muzzleflash.hide()
 	PlayerCamera.offset=Vector2(100,0)
-	call_deferred("add_child", tween)
+	add_child(tween)
 	call_deferred("add_child", tween2)
-	tween.interpolate_property($AnimationPlayer, "playback_speed",1.35,1.9,100,Tween.TRANS_QUART,Tween.EASE_IN_OUT)
+	tween.interpolate_property($AnimationPlayer, "playback_speed",1.5,1.9,100,Tween.TRANS_QUART,Tween.EASE_IN_OUT)
 	tween.start()
 	$Sprite.show()
 	$deathsprite.hide()
 	GameRoot=get_tree().get_root().get_node("Game")
+	var aspect
+	if (OS.get_window_size().x > OS.get_window_size().y):
+		aspect = 1.7777/(OS.get_window_size().x/OS.get_window_size().y)
+	else: aspect = 0.85/(OS.get_window_size().y/OS.get_window_size().x)
+	CameraZoom = aspect
 	pass # Replace with function body.
 
 
@@ -190,6 +196,7 @@ func die(death_type):
 	status=Player_Stats.IS_DYING
 	emit_signal("died",death_type)
 	CameraZoom=0.6
+	
 	match death_type:
 		Player_Deaths.HIT_WALL, Player_Deaths.HIT_SPIKE:
 			if !DeathAnimationFinished: #play death animation only once
@@ -221,8 +228,6 @@ var hitonce=false
 
 
 func _physics_process(delta):
-
-	$Label.set_text(str(velocity))
 	GlobalStats.PlayerStatus=status
 	CameraSystem()
 	animation_system()

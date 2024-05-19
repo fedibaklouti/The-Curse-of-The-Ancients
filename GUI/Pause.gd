@@ -10,6 +10,10 @@ func _ready():
 	get_tree().paused = true
 	popup()
 	visible = true
+	
+func _input(event: InputEvent) -> void:
+	if (Input.is_action_just_pressed("pause_game")):
+		_on_continue_pressed()
 
 func _on_continue_pressed():
 	get_tree().paused = false

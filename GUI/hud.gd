@@ -22,16 +22,18 @@ var tween= Tween.new()
 enum controlType {keyboard, touch, controller}
 var controlMode = controlType.keyboard
 
+var score=""
+var length=0
+
+var showPauseButton := false
+
 func _ready():
 	add_child(tween)
 	deathvbox.hide()
 	runecount.set_text(str(GlobalStats.runecount))
 	pass # Replace with function body.
 
-var score=""
-var length=0
 
-var showPauseButton := false
 
 
 func showPauseButton(
@@ -94,6 +96,7 @@ func update_ammo(ammo):
 		tween.interpolate_property(ammosprite,"rotation_degrees",ammosprite.rotation_degrees,0,0.2,Tween.TRANS_LINEAR,Tween.EASE_IN)
 		if ammo_diff != 0:
 			RevolverCylinderSFX.play()
+
 	tween.start()
 
 func changeRunes():

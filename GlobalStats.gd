@@ -60,11 +60,6 @@ var level_type = Level_Type.NORMAL
 func set_level_type(Name): 
 	level_type = Name
 
-
-func _ready():
-	pass
-
-
 func play_sfx(path,volume,position):
 	var audioplayer = audioplayerpath.instance()
 	get_tree().get_root().get_node("Game").call_deferred("add_child",audioplayer)

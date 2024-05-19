@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Curse of the Ancients"
+config/description="The Curse of the Ancients is an infinite runner where your thirst for exploration unleashes a chaotic curse. Now trapped in a loop between the World of the Dead, the Living, and the Sky, you, a cursed adventurer, must fight your way through mummies, demons, and treacherous landscapes to restore balance and break free."
 run/main_scene="res://Scenes/Mainmenu.tscn"
 boot_splash/image="res://Sprites/GUI/splash.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -44,7 +45,7 @@ window/size/height=360
 window/dpi/allow_hidpi=true
 window/handheld/orientation="sensor_landscape"
 window/stretch/mode="2d"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="expand"
 
 [gdnative]
 
@@ -156,12 +157,22 @@ project/assembly_name="The Curse of the Ancient"
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
+threads/thread_model=2
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+vram_compression/import_pvrtc=true
+quality/shadow_atlas/quadrant_0_subdiv=0
+quality/shadow_atlas/quadrant_1_subdiv=0
+quality/shadow_atlas/quadrant_2_subdiv=0
+quality/shadow_atlas/quadrant_3_subdiv=0
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 misc/mesh_storage/split_stream=true
+quality/filters/use_nearest_mipmap_filter=true
 batching/options/single_rect_fallback=true
+quality/lightmapping/use_bicubic_sampling=false
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

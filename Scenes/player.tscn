@@ -513,12 +513,12 @@ wait_time = 0.001
 one_shot = true
 
 [node name="forwardcast" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 17
 
 [node name="Sprite" type="Sprite" parent="forwardcast"]
+visible = false
 texture = ExtResource( 10 )
 centered = false
 offset = Vector2( 8, -2 )
@@ -529,12 +529,11 @@ one_shot = true
 
 [node name="downcast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 20 )
+cast_to = Vector2( 0, 24 )
 collision_mask = 17
 collide_with_areas = true
 
 [node name="upcast" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, 14 )
 enabled = true
 cast_to = Vector2( 0, -16 )

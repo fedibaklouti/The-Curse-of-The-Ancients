@@ -84,7 +84,7 @@ func kill():
 	pass
 
 func _physics_process(delta):
-	if dead:
+	if dead && GlobalStats.PlayerStatus != 3:
 		position.x-=GlobalStats.BaseTileSpeed+GlobalStats.offset
 	if status == enemy_status.chargeplayer && alive :
 		position.x -= 1
