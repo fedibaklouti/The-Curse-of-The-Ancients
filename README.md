@@ -8,6 +8,10 @@ While exploring an ancient Egyptian tomb, a lonesome adventurer has come across 
 ![mummy (1)](https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/44f0557a-92dc-49c1-b459-77d5a81874a2)
 ![run (5)](https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/e72395cf-c3cb-49ec-99a0-391d21ce978a) 
 
+### Play now!
+- [Download Windows Version](https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-WINDOWS.zip)
+- [Download Android Version](https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-ANDROID.apk)
+- [Play on Web](https://tcota-web.vercel.app/)
 
 ### How to play
  
@@ -23,11 +27,6 @@ While exploring an ancient Egyptian tomb, a lonesome adventurer has come across 
     SWIPE LEFT: Shoot
     SWIPE DOWN: Slide
     SWIPE UP: Jump
-
-### Download
-Windows: https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-WINDOWS.zip
-Android: https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-ANDROID.apk
-Play on Web: https://tcota-web.vercel.app/
 
 ### Screenshots
 ![SCREENSHOT_07](https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/b78a85af-2289-4c6a-9ea0-43ed6897a6d4)
