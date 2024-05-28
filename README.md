@@ -24,6 +24,11 @@ While exploring an ancient Egyptian tomb, a lonesome adventurer has come across 
     SWIPE DOWN: Slide
     SWIPE UP: Jump
 
+### Download
+Windows: https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-WINDOWS.zip
+Android: https://github.com/fedibaklouti/The-Curse-of-The-Ancients/releases/download/release/TheCurseOfTheAncients-ANDROID.apk
+Play on Web: https://tcota-web.vercel.app/
+
 ### Screenshots
 ![SCREENSHOT_07](https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/b78a85af-2289-4c6a-9ea0-43ed6897a6d4)
 ![SCREENSHOT_06](https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/26c64e0b-0393-4601-94b4-d65263816f92)
@@ -36,3 +41,5 @@ While exploring an ancient Egyptian tomb, a lonesome adventurer has come across 
 ### Trailer
 [<img src="https://github.com/fedibaklouti/curse-of-the-ancients/assets/70340337/5c9c3a96-6883-4b13-9b23-25d54e2f5c17" width="640" height="360"
 />](https://www.youtube.com/embed/PdyTlh7GrYI)
+
+
